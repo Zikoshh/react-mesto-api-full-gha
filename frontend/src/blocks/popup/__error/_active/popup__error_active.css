@@ -1,0 +1,5 @@
+.popup__error_active {
+  min-height: 30px;
+  pointer-events: auto;
+  opacity: 1;
+}

@@ -1,0 +1,9 @@
+.card__likes-counter {
+  color: black;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15.73px;
+  grid-row-start: 2;
+  grid-column-start: 2;
+  justify-self: center;
+}

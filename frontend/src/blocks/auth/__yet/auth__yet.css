@@ -1,0 +1,13 @@
+.auth__yet {
+  font-weight: 400;
+  line-height: normal;
+  font-size: 14px;
+  text-align: center;
+  margin: 15px 0 0;
+}
+
+@media screen and (max-width: 600px) {
+  .auth__yet {
+    margin-top: 20px;
+  }
+}

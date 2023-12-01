@@ -1,0 +1,6 @@
+.auth {
+  max-width: 880px;
+  margin: 0 auto;
+  display: grid;
+  justify-content: center;
+}

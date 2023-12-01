@@ -1,0 +1,10 @@
+.card__info {
+  color: black;
+  display: grid;
+  grid-template-columns: 1fr 22px;
+  grid-template-rows: repeat(2, min-content);
+  row-gap: 3px;
+  min-height: 79px;
+  padding: 0 15px 0 21px;
+  align-content: center;
+}

@@ -1,0 +1,17 @@
+.popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(1.15);
+  transition:
+    transform 0.1s cubic-bezier(0.465, 0.183, 0.153, 0.946),
+    opacity 0.1s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+}
