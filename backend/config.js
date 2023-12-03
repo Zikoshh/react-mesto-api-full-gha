@@ -5,6 +5,16 @@ const limitter = rateLimit({
   max: 100,
 });
 
+const corsConfig = {
+  origin: [
+    'http://localhost:5173',
+    'https://zikoshh.students.nomoredomainsmonster.ru',
+  ],
+  credentials: true,
+  maxAge: 30,
+};
+
 module.exports = {
   limitter,
+  corsConfig,
 };

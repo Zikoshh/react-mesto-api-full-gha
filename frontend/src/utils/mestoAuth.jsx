@@ -1,4 +1,4 @@
-const baseUrl = "https://auth.nomoreparties.co";
+const baseUrl = "https://api.zikoshh.students.nomoredomainsmonster.ru";
 
 function getResponse(response) {
   if (!response.ok) {
@@ -34,12 +34,16 @@ export function signUp({ password, email }) {
   }).then(getResponse);
 }
 
-export function tokenCheck(jwt) {
+export function authCheck() {
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${jwt}`,
-    },
+    credentials: "include",
+  }).then(getResponse);
+}
+
+export function signOut() {
+  return fetch(`${baseUrl}/signout`, {
+    method: "DELETE",
+    credentials: "include",
   }).then(getResponse);
 }

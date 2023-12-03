@@ -47,11 +47,7 @@ function App() {
   }, [isLoggedIn]);
 
   useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
-
-    if (jwt) {
-      auth(jwt);
-    }
+    auth();
   }, []);
 
   function handleEditAvatarClick() {
@@ -197,15 +193,23 @@ function App() {
   }
 
   function handleExit() {
-    localStorage.clear();
-    navigate("/sign-in", { replace: true });
-    setIsLoggedIn(false);
-    setUserEmail("");
+    mestoAuth
+      .signOut()
+      .then(() => {
+        navigate("/sign-in", { replace: true });
+        setIsLoggedIn(false);
+        setUserEmail("");
+      })
+      .catch((err) => {
+        console.error(err);
+        setIsSuccesfully(false);
+        setIsInfoTooltipOpen(true);
+      });
   }
 
-  function auth(jwt) {
+  function auth() {
     mestoAuth
-      .tokenCheck(jwt)
+      .authCheck()
       .then((res) => {
         setUserEmail(res.data.email);
         setIsLoggedIn(true);

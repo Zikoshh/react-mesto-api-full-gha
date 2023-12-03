@@ -9,6 +9,11 @@ const {
   createUserValidation,
 } = require('../middlewares/validation');
 
+routes.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 routes.post('/signin', loginValidation, login);
 routes.post('/signup', createUserValidation, createUser);
 

@@ -2,7 +2,6 @@ class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
-    this._authorizationToken = headers.authorization;
   }
 
   _getResponse(response) {
@@ -15,23 +14,20 @@ class Api {
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-      headers: {
-        authorization: this._authorizationToken,
-      },
+      credentials: "include",
     }).then(this._getResponse);
   }
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
-      headers: {
-        authorization: this._authorizationToken,
-      },
+      credentials: "include",
     }).then(this._getResponse);
   }
 
   setUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
+      credentials: "include",
       headers: this._headers,
       body: JSON.stringify({
         name: `${name}`,
@@ -43,6 +39,7 @@ class Api {
   addNewCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
+      credentials: "include",
       headers: this._headers,
       body: JSON.stringify({
         name: `${name}`,
@@ -54,24 +51,21 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
-      headers: {
-        authorization: this._authorizationToken,
-      },
+      credentials: "include",
     }).then(this._getResponse);
   }
 
   changeLikeCardStatus(cardId, isLiked) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: `${isLiked ? "DELETE" : "PUT"}`,
-      headers: {
-        authorization: this._authorizationToken,
-      },
+      credentials: "include",
     }).then(this._getResponse);
   }
 
   changeAvatar(link) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
+      credentials: "include",
       headers: this._headers,
       body: JSON.stringify({
         avatar: link,
@@ -81,9 +75,8 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-74",
+  baseUrl: "https://api.zikoshh.students.nomoredomainsmonster.ru",
   headers: {
-    authorization: "af9c56b1-8df9-4cc1-aff7-4c8e6a2b0592",
     "Content-Type": "application/json",
   },
 });
