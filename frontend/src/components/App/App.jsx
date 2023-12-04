@@ -165,8 +165,8 @@ function App() {
   function handleLogin(enteredData) {
     mestoAuth
       .signIn(enteredData)
-      .then((res) => {
-        localStorage.setItem("jwt", res.token);
+      .then(() => {
+
         setIsLoggedIn(true);
         setUserEmail(enteredData.email);
       })

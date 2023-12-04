@@ -36,14 +36,13 @@ export function signUp({ password, email }) {
 
 export function authCheck() {
   return fetch(`${baseUrl}/users/me`, {
-    method: "GET",
-    credentials: "include",
+    credentials: 'include',
   }).then(getResponse);
 }
 
 export function signOut() {
   return fetch(`${baseUrl}/signout`, {
     method: "DELETE",
-    credentials: "include",
+    credentials: 'include',
   }).then(getResponse);
 }

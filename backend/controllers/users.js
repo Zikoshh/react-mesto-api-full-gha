@@ -92,7 +92,6 @@ const login = async (req, res, next) => {
 
     res.cookie('jwt', token, {
       httpOnly: true,
-      sameSite: true,
       maxAge: 3600000 * 24 * 7,
     });
 
