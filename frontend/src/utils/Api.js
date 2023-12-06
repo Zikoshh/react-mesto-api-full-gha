@@ -93,8 +93,7 @@ class Api {
     }).then(this._getResponse);
   }
 }
-// eslint-disable-next-line no-unused-vars
-const servDomen = "https://api.zikoshh.students.nomoredomainsmonster.ru";
-const api = new Api("http://127.0.0.1:3000");
+
+const api = new Api("https://api.zikoshh.students.nomoredomainsmonster.ru");
 
 export default api;

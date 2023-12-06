@@ -1,6 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-const servDomen = "https://api.zikoshh.students.nomoredomainsmonster.ru";
-const baseUrl = "http://127.0.0.1:3000";
+const baseUrl = "https://api.zikoshh.students.nomoredomainsmonster.ru";
 
 function getResponse(response) {
   if (!response.ok) {
