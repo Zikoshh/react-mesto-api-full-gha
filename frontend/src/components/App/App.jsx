@@ -47,7 +47,11 @@ function App() {
   }, [isLoggedIn]);
 
   useEffect(() => {
-    auth();
+    const userId = localStorage.getItem("userId");
+
+    if (userId) {
+      auth(userId);
+    }
   }, []);
 
   function handleEditAvatarClick() {
@@ -165,8 +169,8 @@ function App() {
   function handleLogin(enteredData) {
     mestoAuth
       .signIn(enteredData)
-      .then(() => {
-
+      .then((res) => {
+        localStorage.setItem("userId", res.userId);
         setIsLoggedIn(true);
         setUserEmail(enteredData.email);
       })
@@ -193,23 +197,16 @@ function App() {
   }
 
   function handleExit() {
-    mestoAuth
-      .signOut()
-      .then(() => {
-        navigate("/sign-in", { replace: true });
-        setIsLoggedIn(false);
-        setUserEmail("");
-      })
-      .catch((err) => {
-        console.error(err);
-        setIsSuccesfully(false);
-        setIsInfoTooltipOpen(true);
-      });
+    mestoAuth.signOut().then(() => {
+      navigate("/sign-in", { replace: true });
+      setIsLoggedIn(false);
+      setUserEmail("");
+    });
   }
 
-  function auth() {
+  function auth(userId) {
     mestoAuth
-      .authCheck()
+      .tokenCheck(userId)
       .then((res) => {
         setUserEmail(res.data.email);
         setIsLoggedIn(true);

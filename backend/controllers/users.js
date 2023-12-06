@@ -47,6 +47,7 @@ const getUserByJwt = async (req, res, next) => {
 const createUser = async (req, res, next) => {
   try {
     const hash = await bcrypt.hash(req.body.password, SOLT_ROUNDS);
+    // eslint-disable-next-line no-unused-vars
     const newUser = await new User({
       name: req.body.name,
       about: req.body.about,
@@ -56,12 +57,7 @@ const createUser = async (req, res, next) => {
     }).save();
     return res
       .status(HTTP_SUCCES_CREATED_CODE)
-      .send({
-        name: newUser.name,
-        about: newUser.about,
-        avatar: newUser.avatar,
-        email: newUser.email,
-      });
+      .send({ message: 'Успешно зарегистрировались' });
   } catch (err) {
     if (err.code === MONGO_DUPLICATE_ERROR_CODE) {
       return next(new DuplicateError('Такой пользователь уже существует'));
@@ -91,11 +87,12 @@ const login = async (req, res, next) => {
     });
 
     res.cookie('jwt', token, {
-      httpOnly: true,
       maxAge: 3600000 * 24 * 7,
+      httpOnly: true,
+      sameSite: true,
     });
 
-    res.send({ email: userInfo.email });
+    res.send({ userId: userInfo._id });
   } catch (err) {
     return next(err);
   }

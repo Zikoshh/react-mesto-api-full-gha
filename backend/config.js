@@ -11,7 +11,6 @@ const corsConfig = {
     'https://zikoshh.students.nomoredomainsmonster.ru',
   ],
   credentials: true,
-  maxAge: 30,
 };
 
 module.exports = {

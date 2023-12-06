@@ -1,4 +1,6 @@
-const baseUrl = "https://api.zikoshh.students.nomoredomainsmonster.ru";
+// eslint-disable-next-line no-unused-vars
+const servDomen = "https://api.zikoshh.students.nomoredomainsmonster.ru";
+const baseUrl = "http://127.0.0.1:3000";
 
 function getResponse(response) {
   if (!response.ok) {
@@ -13,6 +15,7 @@ export function signIn({ password, email }) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Accept: "application/json",
     },
     body: JSON.stringify({
       password: `${password}`,
@@ -26,6 +29,7 @@ export function signUp({ password, email }) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Accept: "application/json",
     },
     body: JSON.stringify({
       password: `${password}`,
@@ -34,15 +38,20 @@ export function signUp({ password, email }) {
   }).then(getResponse);
 }
 
-export function authCheck() {
+export function tokenCheck() {
   return fetch(`${baseUrl}/users/me`, {
-    credentials: 'include',
+    credentials: "include",
+    headers: {
+      Accept: "application/json",
+    },
   }).then(getResponse);
 }
 
 export function signOut() {
   return fetch(`${baseUrl}/signout`, {
-    method: "DELETE",
-    credentials: 'include',
+    credentials: "include",
+    headers: {
+      Accept: "application/json",
+    },
   }).then(getResponse);
 }

@@ -1,5 +1,5 @@
-import PopupWithForm from '../PopupWithForm/index.jsx';
-import { useForm } from 'react-hook-form';
+import PopupWithForm from "../PopupWithForm/index.jsx";
+import { useForm } from "react-hook-form";
 
 function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isLoading }) {
   const {
@@ -9,7 +9,7 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isLoading }) {
     reset,
     formState: { errors },
   } = useForm({
-    mode: 'onBlur',
+    mode: "onBlur",
   });
 
   function onSubmit(data) {
@@ -39,22 +39,22 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isLoading }) {
       submitButtonAriaLabel="Кнопка обновления карточки"
     >
       <input
-        className={`popup__input ${errors?.link && 'popup__input_invalid'}`}
+        className={`popup__input ${errors?.link && "popup__input_invalid"}`}
         name="link"
         type="text"
         placeholder="Ссылка на картинку"
-        {...register('link', {
-          required: 'Поле обязательно к заполнению',
+        {...register("link", {
+          required: "Поле обязательно к заполнению",
           pattern: {
             value:
               // eslint-disable-next-line no-useless-escape
               /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/,
-            message: 'Некорректная ссылка',
+            message: "Некорректная ссылка",
           },
         })}
       ></input>
-      <p className={`popup__error ${errors?.link && 'popup__error_active'}`}>
-        {errors?.link && (errors?.link?.message || 'Error!')}
+      <p className={`popup__error ${errors?.link && "popup__error_active"}`}>
+        {errors?.link && (errors?.link?.message || "Error!")}
       </p>
     </PopupWithForm>
   );
