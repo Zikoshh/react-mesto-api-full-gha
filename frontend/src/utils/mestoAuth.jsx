@@ -36,19 +36,10 @@ export function signUp({ password, email }) {
   }).then(getResponse);
 }
 
-export function tokenCheck() {
+export function tokenCheck(jwt) {
   return fetch(`${baseUrl}/users/me`, {
-    credentials: "include",
     headers: {
-      Accept: "application/json",
-    },
-  }).then(getResponse);
-}
-
-export function signOut() {
-  return fetch(`${baseUrl}/signout`, {
-    credentials: "include",
-    headers: {
+      Authorization: `Bearer ${jwt}`,
       Accept: "application/json",
     },
   }).then(getResponse);

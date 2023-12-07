@@ -13,15 +13,7 @@ const { limitter } = require('./config');
 const { PORT = 3000, MONGO_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 
 const app = express();
-app.use(
-  cors({
-    origin: [
-      'http://localhost:5173',
-      'https://zikoshh.students.nomoredomainsmonster.ru',
-    ],
-    credentials: true,
-  }),
-);
+app.use(cors());
 mongoose.connect(MONGO_URL);
 
 app.use(express.json());
