@@ -48,8 +48,7 @@ const deleteCardById = async (req, res, next) => {
       );
     }
 
-    await Card.findByIdAndDelete(req.params.cardId).orFail(() => next(new NotFoundError('Карточка с указанным id не найдена')));
-
+    await Card.findByIdAndDelete(req.params.cardId);
     return res.send({ message: 'Карточка удалена' });
   } catch (err) {
     if (err instanceof CastError) {
