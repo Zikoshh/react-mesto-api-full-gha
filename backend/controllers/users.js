@@ -7,11 +7,9 @@ const DuplicateError = require('../errors/DuplicateError');
 const NotFoundError = require('../errors/NotFoundError');
 const UnAuthorizedError = require('../errors/UnAuthorizedError');
 
-const {
-  SOLT_ROUNDS = 10,
-  HTTP_SUCCES_CREATED_CODE = 201,
-  MONGO_DUPLICATE_ERROR_CODE = 11000,
-} = process.env;
+const HTTP_SUCCES_CREATED_CODE = 201;
+const SOLT_ROUNDS = 10;
+const MONGO_DUPLICATE_ERROR_CODE = 11000;
 
 const getUsers = async (req, res, next) => {
   try {

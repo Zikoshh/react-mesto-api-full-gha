@@ -204,6 +204,7 @@ function App() {
     navigate("/sign-in", { replace: true });
     setIsLoggedIn(false);
     setUserEmail("");
+    setCurrentUser({});
   }
 
   function auth(jwt) {

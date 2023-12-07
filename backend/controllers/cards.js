@@ -4,7 +4,7 @@ const BadRequestError = require('../errors/BadRequestError');
 const NotFoundError = require('../errors/NotFoundError');
 const InsufficientPermissionsError = require('../errors/InsufficientPermissionsError');
 
-const { HTTP_SUCCES_CREATED_CODE = 201 } = process.env;
+const HTTP_SUCCES_CREATED_CODE = 201;
 
 const getCards = async (req, res, next) => {
   try {
