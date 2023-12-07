@@ -63,7 +63,12 @@ const createUser = async (req, res, next) => {
     }).save();
     return res
       .status(HTTP_SUCCES_CREATED_CODE)
-      .send({ message: 'Успешно зарегистрировались' });
+      .send({
+        name: newUser.name,
+        about: newUser.about,
+        avatar: newUser.avatar,
+        email: newUser.email,
+      });
   } catch (err) {
     if (err.code === MONGO_DUPLICATE_ERROR_CODE) {
       return next(new DuplicateError('Такой пользователь уже существует'));
