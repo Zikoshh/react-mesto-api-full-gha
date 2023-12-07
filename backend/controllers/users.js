@@ -74,6 +74,10 @@ const createUser = async (req, res, next) => {
       return next(new DuplicateError('Такой пользователь уже существует'));
     }
 
+    if (err.name === 'ValidationError') {
+      return next(new BadRequestError('Переданы невалидные данные для регистрации'));
+    }
+
     return next(err);
   }
 };
