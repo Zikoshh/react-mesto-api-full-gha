@@ -13,8 +13,8 @@ class Api {
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
+      credentials: "include",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         Accept: "application/json",
       },
     }).then(this._getResponse);
@@ -22,8 +22,8 @@ class Api {
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
+      credentials: "include",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         Accept: "application/json",
       },
     }).then(this._getResponse);
@@ -32,8 +32,8 @@ class Api {
   setUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
+      credentials: "include",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         "Content-Type": "application/json",
         Accept: "application/json",
       },
@@ -47,8 +47,8 @@ class Api {
   addNewCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
+      credentials: "include",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         "Content-Type": "application/json",
         Accept: "application/json",
       },
@@ -62,8 +62,8 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
+      credentials: "include",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         Accept: "application/json",
       },
     }).then(this._getResponse);
@@ -72,8 +72,8 @@ class Api {
   changeLikeCardStatus(cardId, isLiked) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: `${isLiked ? "DELETE" : "PUT"}`,
+      credentials: "include",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         Accept: "application/json",
       },
     }).then(this._getResponse);
@@ -82,8 +82,8 @@ class Api {
   changeAvatar(link) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
+      credentials: "include",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         "Content-Type": "application/json",
         Accept: "application/json",
       },

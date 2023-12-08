@@ -47,10 +47,20 @@ function App() {
   }, [isLoggedIn]);
 
   useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
+    const userId = localStorage.getItem("userId");
 
-    if (jwt) {
-      auth(jwt);
+    if (userId) {
+      mestoAuth
+        .auth()
+        .then((res) => {
+          setUserEmail(res.email);
+          setIsLoggedIn(true);
+          navigate("/", { replace: true });
+        })
+        .catch((err) => {
+          console.error(err);
+          setIsLoggedIn(false);
+        });
     }
   }, []);
 
@@ -170,7 +180,7 @@ function App() {
     mestoAuth
       .signIn(enteredData)
       .then((res) => {
-        localStorage.setItem("jwt", res.jwt);
+        localStorage.setItem("userId", res.userId);
         navigate("/", { replace: true });
         setIsLoggedIn(true);
         setUserEmail(enteredData.email);
@@ -200,24 +210,19 @@ function App() {
   }
 
   function handleExit() {
-    localStorage.removeItem("jwt");
-    navigate("/sign-in", { replace: true });
-    setIsLoggedIn(false);
-    setUserEmail("");
-    setCurrentUser({});
-  }
-
-  function auth(jwt) {
     mestoAuth
-      .tokenCheck(jwt)
-      .then((res) => {
-        setUserEmail(res.email);
-        setIsLoggedIn(true);
-        navigate("/", { replace: true });
+      .signOut()
+      .then(() => {
+        localStorage.removeItem("userId");
+        navigate("/sign-in", { replace: true });
+        setIsLoggedIn(false);
+        setUserEmail("");
+        setCurrentUser({});
       })
       .catch((err) => {
         console.error(err);
-        setIsLoggedIn(false);
+        setIsSuccesfully(false);
+        setIsInfoTooltipOpen(true);
       });
   }
 
