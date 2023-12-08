@@ -19,6 +19,7 @@ routes.post('/signup', createUserValidation, createUser);
 
 routes.use(auth);
 
+routes.delete('/signout', (req, res) => res.clearCookie('jwt').send({ message: 'Выход' }));
 routes.use('/users', userRouter);
 routes.use('/cards', cardRouter);
 routes.use('/*', (req, res, next) => next(new NotFoundError('Мы не обрабатываем данный роут')));
