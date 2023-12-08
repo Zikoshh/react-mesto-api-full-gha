@@ -101,7 +101,14 @@ const login = async (req, res, next) => {
       _id: userInfo._id,
     });
 
-    res.send({ jwt: token });
+    res.cookie('jwt', token, {
+      maxAge: 3600000 * 24 * 7,
+      httpOnly: true,
+      sameSite: 'None',
+      secure: true,
+    });
+
+    res.send({ userId: userInfo._id });
   } catch (err) {
     return next(err);
   }

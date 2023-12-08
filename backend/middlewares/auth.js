@@ -6,13 +6,11 @@ const { JWT_SECRET, NODE_ENV } = process.env;
 module.exports = (req, res, next) => {
   let payload;
   try {
-    if (!req.headers.authorization) {
+    if (!req.cookies.jwt) {
       return next(new UnAuthorizedError('Необходима авторизация'));
     }
 
-    const token = req.headers.authorization.replace('Bearer ', '');
-
-    payload = jwt.verify(token, NODE_ENV ? JWT_SECRET : 'dev_secret');
+    payload = jwt.verify(req.cookies.jwt, NODE_ENV ? JWT_SECRET : 'dev_secret');
   } catch (err) {
     if (err.name === 'JsonWebTokenError') {
       return next(new UnAuthorizedError('С токеном что-то не так'));

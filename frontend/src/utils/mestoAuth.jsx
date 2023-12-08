@@ -11,6 +11,7 @@ function getResponse(response) {
 export function signIn({ password, email }) {
   return fetch(`${baseUrl}/signin`, {
     method: "POST",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -36,10 +37,20 @@ export function signUp({ password, email }) {
   }).then(getResponse);
 }
 
-export function tokenCheck(jwt) {
+export function auth() {
   return fetch(`${baseUrl}/users/me`, {
+    credentials: "include",
     headers: {
-      Authorization: `Bearer ${jwt}`,
+      Accept: "application/json",
+    },
+  }).then(getResponse);
+}
+
+export function signOut() {
+  return fetch(`${baseUrl}/signout`, {
+    method: "DELETE",
+    credentials: "include",
+    headers: {
       Accept: "application/json",
     },
   }).then(getResponse);
