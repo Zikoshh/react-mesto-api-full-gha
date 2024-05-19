@@ -6,28 +6,28 @@
 
 ## Используемые технологии
 
-###Frontend
+### Frontend
 
 - React
 - React Router
 - React Hook Form
 - Css
 
-###Backend
+### Backend
 
 - Express
 - MongoDB
 
 ## Инструкции по установке и запуску
 
-###Frontend
+### Frontend
 1. Клонируйте репозиторий: `git clone https://github.com/Zikoshh/react-mesto-api-full-gha.git`
 2. Перейдите в директорию проекта: `cd react-mesto-api-full-gha/frontend`
 3. Установите зависимости: `npm i`
 4. Запустите проект: `npm run dev`
 5. В браузере открываем `http://localhost:5173/`
 
-###Backend
+### Backend
 2. Перейдите в директорию проекта: `cd react-mesto-api-full-gha/backend`
 3. Установите зависимости: `npm i`
 4. Запустите проект: `npm run dev`
